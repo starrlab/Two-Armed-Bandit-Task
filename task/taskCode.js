@@ -32,7 +32,7 @@ csvData += "KEYBOARD_PRESS_RIGHT," + KEYBOARD_PRESS_RIGHT + "\n";
 csvData += "KEYBOARD_PRESS_LEFT," + KEYBOARD_PRESS_LEFT + "\n";
 
 //title
-csvData += "Linux Time (on finish), Task Index, Total Time Elapsed, Test Type, Block, Trial, Action RT Time, User Response\n"
+csvData += "Linux Time (on finish), Task Index, Total Time Elapsed, Test Type, Block, Trial, Action RT Time, User Response, Reward\n"
 
 let decide = {
     type: "html-keyboard-response",
@@ -48,7 +48,7 @@ let decide = {
         "</div>",
     on_finish: function (data) {
         data.trial_type = "decide";
-        csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "decide," + currentBlockNumber + "," + currentTrialNumber + "," +  "n/a" + "," + "n/a" + "," + "\n";
+        csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "decide," + currentBlockNumber + "," + currentTrialNumber + "," +  "n/a" + "," + "n/a" + "," + "n/a" + "\n";
     }
 };
 
@@ -74,7 +74,7 @@ let action = {
             userRewardForCurrentTrial = LEFT_ARM_REWARDS[data.trial_index];
         }
         rewardCount += userRewardForCurrentTrial;
-        csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "action," + currentBlockNumber + "," + currentTrialNumber + "," +  RTtime + "," + "n/a" + "\n";
+        csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "action," + currentBlockNumber + "," + currentTrialNumber + "," +  RTtime + "," + "n/a" + "," + "n/a" + "\n";
     }
 };
 
@@ -92,7 +92,7 @@ let feedbackWinner = {
         "</div>",
     on_finish: function (data) {
         data.trial_type = "feedbackWinner";
-        csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "feedback_win," + currentBlockNumber + "," + currentTrialNumber + "," +  "n/a" + "," + "n/a" +  "\n";
+        csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "feedback_win," + currentBlockNumber + "," + currentTrialNumber + "," +  "n/a" + "," + "n/a" + "," + "n/a" +  "\n";
     }
 };
 
@@ -114,7 +114,7 @@ let prepare = {
         data.current_trial = currentTrialNumber;
         data.user_response = userResponseKeyPress;
 
-        csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "prepare," + currentBlockNumber + "," + currentTrialNumber + "," +  RTtime + "," + userResponseKeyPress + "\n";
+        csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "prepare," + currentBlockNumber + "," + currentTrialNumber + "," +  RTtime + "," + userResponseKeyPress + "," + userRewardForCurrentTrial + "\n";
         //Check if block is finished, if so reset trials and increment blocks. Right after increment trial so we start at 1
         if(currentTrialNumber == NUMBER_OF_TRIALS){
             currentTrialNumber = 0;
