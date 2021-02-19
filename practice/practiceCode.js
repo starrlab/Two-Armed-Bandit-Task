@@ -2,7 +2,7 @@ const NUMBER_OF_TRIALS = 20;
 const DECIDE_DURATION = 2000; //ms
 const PREPARE_DURATION = 1000; //ms
 const WIN_LOSE_DURATION = 1000; //ms
-const INSTRUCTIONS = "Instructions go here";
+const INSTRUCTIONS = "You will have the option to choose 2 levers: left or right.  These levers can be chosen by pressing the left arrow key for the left lever and the right arrow key for the right lever. One lever has a greater reward than the other, so choose carefully. This practice contains 20 trials to let you get the hang of the task.";
 const PRACTICE_COMPLETE = "Practice Complete!";
 const KEYBOARD_PRESS_RIGHT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(39); //This is the arrow key code
 const KEYBOARD_PRESS_LEFT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(37); //This is the arrow key code
@@ -19,7 +19,7 @@ let instructions = {
     type: "html-keyboard-response",
     choices: jsPsych.ALL_KEYS,
     stimulus: "<div >"+
-        "<div  '><h1>" + INSTRUCTIONS + "</h1> <h3>Press any key to continue</h3></div>" +
+        "<div  '><h2>" + INSTRUCTIONS + "</h2> <h3>Press any key to continue</h3></div>" +
         "</div>",
 }
 
