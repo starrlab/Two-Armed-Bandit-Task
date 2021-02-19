@@ -67,11 +67,15 @@ let action = {
         data.trial_type = "action";
         userResponseKeyPress = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press);
         RTtime = data.rt;
-        if(data.key_press == KEYBOARD_PRESS_RIGHT){
-            userRewardForCurrentTrial = RIGHT_ARM_REWARDS[data.trial_index];
+        if(userResponseKeyPress == KEYBOARD_PRESS_RIGHT){
+            userRewardForCurrentTrial = RIGHT_ARM_REWARDS[((currentBlockNumber-1)*40+currentTrialNumber)-1];
+        }
+        else if(userResponseKeyPress == KEYBOARD_PRESS_LEFT){
+            userRewardForCurrentTrial = LEFT_ARM_REWARDS[((currentBlockNumber-1)*40+currentTrialNumber)-1];
         }
         else{
-            userRewardForCurrentTrial = LEFT_ARM_REWARDS[data.trial_index];
+            alert("Could not read Keyboard press. Please try again");
+            return;
         }
         rewardCount += userRewardForCurrentTrial;
         csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "action," + currentBlockNumber + "," + currentTrialNumber + "," +  RTtime + "," + "n/a" + "," + "n/a" + "\n";
