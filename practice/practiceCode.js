@@ -12,7 +12,7 @@ const RIGHT_ARM_REWARDS = [75.101,81.044,66.364,67.243,59.53,65.122,57.024,77.82
 
 let rewardCount = 0;
 let userRewardForCurrentTrial = 0;
-let currentTrialNumber = 0;
+let currentTrialNumber = 1;
 let timeline = [];
 
 let instructions = {
@@ -100,12 +100,7 @@ let prepare = {
         "<p class='small'><strong>Press the → key</strong></p></div>" +
         "</div>",
     on_finish: function (data) {
-        if((currentTrialNumber % (NUMBER_OF_TRIALS / 4)) == 4){
-            currentTrialNumber = 0;
-        }
-        else{
-            currentTrialNumber++;
-        }
+        currentTrialNumber++;
     }
 };
 
