@@ -14,11 +14,7 @@ const CHECKMARK_WINNER = '✓';
 let currentBlockNumber = 1;
 let currentTrialNumber = 1;
 let timeline = [];
-let levers = [KEYBOARD_PRESS_LEFT, KEYBOARD_PRESS_RIGHT];
-let currentLeftProbability = 0;
-let currentRightProbability = 0;
-let currentCorrectLever = "";
-let correctLeverChosen = true;
+let userRewardForCurrentTrial = 0;
 let userResponseKeyPress = "";
 let rewardCount = 0;
 let RTtime = 0;
@@ -72,11 +68,12 @@ let action = {
         userResponseKeyPress = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press);
         RTtime = data.rt;
         if(data.key_press == KEYBOARD_PRESS_RIGHT){
-            rewardCount += RIGHT_ARM_REWARDS[data.trial_index];
+            userRewardForCurrentTrial = RIGHT_ARM_REWARDS[data.trial_index];
         }
         else{
-            rewardCount += LEFT_ARM_REWARDS[data.trial_index];
+            userRewardForCurrentTrial = LEFT_ARM_REWARDS[data.trial_index];
         }
+        rewardCount += userRewardForCurrentTrial;
         csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "action," + currentBlockNumber + "," + currentTrialNumber + "," +  RTtime + "," + "n/a" + "\n";
     }
 };
