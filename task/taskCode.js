@@ -56,7 +56,7 @@ let action = {
     type: "html-keyboard-response",
     choices: [KEYBOARD_PRESS_RIGHT, KEYBOARD_PRESS_LEFT],
     prompt: function() {
-        return "<div><h1>$" + String(rewardCount.toString()).padStart(2, '0') + "</h1></div>"
+        return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img></div>" +
@@ -87,7 +87,7 @@ let feedbackWinner = {
     choices: jsPsych.NO_KEYS,
     trial_duration: WINNER_DURATION,
     prompt: function() {
-        return "<div><h1>$" + String(rewardCount.toString()).padStart(2, '0') + "</h1></div>"
+        return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img></div>" +
@@ -105,7 +105,7 @@ let prepare = {
     choices: jsPsych.NO_KEYS,
     trial_duration: PREPARE_DURATION,
     prompt: function() {
-        return "<div><h1>$" + String(rewardCount.toString()).padStart(2, '0') + "</h1></div>"
+        return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
         "<div  '><img class='hidden_image' src='../images/HandleLeft.png'></img></div>" +
