@@ -109,7 +109,7 @@ let prepare = {
     },
     stimulus: "<div class='container'>"+
         "<div  '><img class='hidden_image' src='../images/HandleLeft.png'></img></div>" +
-        "<div  '><h1>Prepare for the next trial!</h1></div>" +
+        "<div  '><h1>Prepare for the next trial</h1></div>" +
         "<div  '><img class='hidden_image' src='../images/HandleRight.png'></img></div>" +
         "</div>",
     on_finish: function (data) {
