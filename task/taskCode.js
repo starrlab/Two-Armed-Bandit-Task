@@ -2,8 +2,8 @@
 const VERSION = "1";
 //const
 const DECIDE_DURATION = 2000; //ms
-const PREPARE_DURATION = 1000; //ms
-const FEEDBACK_DURATION = 1000; //ms
+const PREPARE_DURATION = 2000; //ms
+const FEEDBACK_DURATION = 2000; //ms
 const NUMBER_OF_BLOCKS = 8;
 const NUMBER_OF_TRIALS = 40;
 const KEYBOARD_PRESS_RIGHT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(39); //This is the arrow key code
