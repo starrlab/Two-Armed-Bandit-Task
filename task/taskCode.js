@@ -39,7 +39,7 @@ let decide = {
     choices: jsPsych.NO_KEYS,
     trial_duration: DECIDE_DURATION,
         prompt: function() {
-            return "<div><h1>$" + String(rewardCount.toString()).padStart(2, '0') + "</h1></div>"
+            return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
         },
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img></div>" +
