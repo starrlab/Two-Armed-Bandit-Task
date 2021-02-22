@@ -82,7 +82,7 @@ let action = {
     }
 };
 
-let feedbackWinner = {
+let feedback = {
     type: "html-keyboard-response",
     choices: jsPsych.NO_KEYS,
     trial_duration: WINNER_DURATION,
@@ -95,7 +95,7 @@ let feedbackWinner = {
         "<div  '><img src='../images/HandleRight.png'></img></div>" +
         "</div>",
     on_finish: function (data) {
-        data.trial_type = "feedbackWinner";
+        data.trial_type = "feedback";
         csvData += Date.now().toString() + "," + (data.trial_index+1) + "," +  data.time_elapsed + "," + "feedback_win," + currentBlockNumber + "," + currentTrialNumber + "," +  "n/a" + "," + "n/a" + "," + "n/a" +  "\n";
     }
 };
@@ -129,7 +129,7 @@ let prepare = {
 };
 
 let blockOfTrials = {
-    timeline: [decide, action, feedbackWinner, prepare],
+    timeline: [decide, action, feedback, prepare],
     randomize_order: false,
     repetitions: NUMBER_OF_TRIALS
 };
