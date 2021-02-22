@@ -1,12 +1,11 @@
 const NUMBER_OF_TRIALS = 20;
 const DECIDE_DURATION = 2000; //ms
-const PREPARE_DURATION = 1000; //ms
-const WIN_LOSE_DURATION = 1000; //ms
+const PREPARE_DURATION = 2000; //ms
+const WIN_LOSE_DURATION = 2000; //ms
 const INSTRUCTIONS = "You will have the option to choose 2 levers: left or right.  These levers can be chosen by pressing the left arrow key for the left lever and the right arrow key for the right lever. One lever has a greater reward than the other, so choose carefully. This practice contains 20 trials to let you get the hang of the task.";
 const PRACTICE_COMPLETE = "Practice Complete!";
 const KEYBOARD_PRESS_RIGHT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(39); //This is the arrow key code
 const KEYBOARD_PRESS_LEFT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(37); //This is the arrow key code
-const CHECKMARK_WINNER = '✓';
 const LEFT_ARM_REWARDS = [83.337,88.632,106.8,91.244,92.127,89.99,91.72,83.373,91.958,86.467,88.274,85.404,84.9,85.658,72.414,86.71,93.669,95.026,87.915,82.854];
 const RIGHT_ARM_REWARDS = [75.101,81.044,66.364,67.243,59.53,65.122,57.024,77.828,61.793,77.591,65.261,70.58,55.51,59.726,69.711,71.007,80.864,85.483,85.61,84.426];
 
@@ -28,12 +27,12 @@ let decide = {
     choices: jsPsych.NO_KEYS,
     trial_duration: DECIDE_DURATION,
     prompt: function() {
-        return "<div><h1>$" + String(rewardCount.toString()).padStart(2, '0') + "</h1></div>"
+        return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img>" +
         "<p class='small'><strong>Press the ← key</strong></p></div>" +
-        "<div  '><h1>Decide a Lever to Pull!</h1></div>" +
+        "<div  '><h1>Decide which lever to pull</h1></div>" +
         "<div  '><img src='../images/HandleRight.png'></img>" +
         "<p class='small'><strong>Press the → key</strong></p></div>" +
         "</div>"
@@ -43,12 +42,12 @@ let action = {
     type: "html-keyboard-response",
     choices: [KEYBOARD_PRESS_RIGHT, KEYBOARD_PRESS_LEFT],
     prompt: function() {
-        return "<div><h1>$" + String(rewardCount.toString()).padStart(2, '0') + "</h1></div>"
+        return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img>" +
         "<p class='small'><strong>Press the ← key</strong></p></div>" +
-        "<div  '><h1>Pull a Lever!</h1></div>" +
+        "<div  '><h1>Pull the lever</h1></div>" +
         "<div  '><img src='../images/HandleRight.png'></img>" +
         "<p class='small'><strong>Press the → key</strong></p></div>" +
         "</div>",
@@ -73,15 +72,17 @@ let feedbackWinner = {
     choices: jsPsych.NO_KEYS,
     trial_duration: WIN_LOSE_DURATION,
     prompt: function() {
-        return "<div><h1>$" + String(rewardCount.toString()).padStart(2, '0') + "</h1></div>"
+        return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
-    stimulus: "<div class='container'>"+
-        "<div  '><img src='../images/HandleLeft.png'></img>" +
-        "<p class='small'><strong>Press the ← key</strong></p></div>" +
-        "<div  '><h1 id='checkmark_for_winner'>" + CHECKMARK_WINNER + "</h1></div>" +
-        "<div  '><img src='../images/HandleRight.png'></img>" +
-        "<p class='small'><strong>Press the → key</strong></p></div>" +
-        "</div>"
+    stimulus: function () {
+        return "<div class='container'>"+
+    "<div  '><img src='../images/HandleLeft.png'></img>" +
+    "<p class='small'><strong>Press the ← key</strong></p></div>" +
+    "<div  '><h1>You won " + formatter.format(userRewardForCurrentTrial).toString() + "</h1></div>" +
+    "<div  '><img src='../images/HandleRight.png'></img>" +
+    "<p class='small'><strong>Press the → key</strong></p></div>" +
+    "</div>"
+    }
 };
 
 
@@ -90,12 +91,12 @@ let prepare = {
     choices: jsPsych.NO_KEYS,
     trial_duration: PREPARE_DURATION,
     prompt: function() {
-        return "<div><h1>$" + String(rewardCount.toString()).padStart(2, '0') + "</h1></div>"
+        return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img>" +
         "<p class='small'><strong>Press the ← key</strong></p></div>" +
-        "<div  '><h1>Prepare for the next trial!</h1></div>" +
+        "<div  '><h1>Prepare for the next trial</h1></div>" +
         "<div  '><img src='../images/HandleRight.png'></img>" +
         "<p class='small'><strong>Press the → key</strong></p></div>" +
         "</div>",
