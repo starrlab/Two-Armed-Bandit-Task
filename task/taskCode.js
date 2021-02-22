@@ -3,7 +3,7 @@ const VERSION = "1";
 //const
 const DECIDE_DURATION = 2000; //ms
 const PREPARE_DURATION = 1000; //ms
-const WINNER_DURATION = 1000; //ms
+const FEEDBACK_DURATION = 1000; //ms
 const NUMBER_OF_BLOCKS = 8;
 const NUMBER_OF_TRIALS = 40;
 const KEYBOARD_PRESS_RIGHT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(39); //This is the arrow key code
@@ -24,7 +24,7 @@ let csvData = "";
 csvData = "version," + VERSION + "\n";
 csvData += "DECIDE_DURATION," + DECIDE_DURATION + "\n";
 csvData += "PREPARE_DURATION," + PREPARE_DURATION + "\n";
-csvData += "WINNER_DURATION," + WINNER_DURATION + "\n";
+csvData += "FEEDBACK_DURATION," + FEEDBACK_DURATION + "\n";
 csvData += "NUMBER_OF_BLOCKS," + NUMBER_OF_BLOCKS + "\n";
 csvData += "NUMBER_OF_TRIALS," + NUMBER_OF_TRIALS + "\n";
 csvData += "KEYBOARD_PRESS_RIGHT," + KEYBOARD_PRESS_RIGHT + "\n";
@@ -84,7 +84,7 @@ let action = {
 let feedback = {
     type: "html-keyboard-response",
     choices: jsPsych.NO_KEYS,
-    trial_duration: WINNER_DURATION,
+    trial_duration: FEEDBACK_DURATION,
     prompt: function() {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
