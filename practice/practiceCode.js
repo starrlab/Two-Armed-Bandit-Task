@@ -94,11 +94,11 @@ let prepare = {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
-        "<div  '><img src='../images/HandleLeft.png'></img>" +
-        "<p class='small'><strong>Press the ← key</strong></p></div>" +
+        "<div  '><img  class='hidden_image'  src='../images/HandleLeft.png'></img>" +
+        "<p class='hidden_image' class='small'><strong>Press the ← key</strong></p></div>" +
         "<div  '><h1>Prepare for the next trial</h1></div>" +
-        "<div  '><img src='../images/HandleRight.png'></img>" +
-        "<p class='small'><strong>Press the → key</strong></p></div>" +
+        "<div  '><img  class='hidden_image'  src='../images/HandleRight.png'></img>" +
+        "<p class='hidden_image' class='small'><strong>Press the → key</strong></p></div>" +
         "</div>",
     on_finish: function (data) {
         currentTrialNumber++;
