@@ -146,7 +146,7 @@ jsPsych.init({
     on_finish: function() {
         //jsPsych.data.displayData();
         let filename = "task_" + Date.now().toString() + "_ver" + VERSION + ".csv";
-        postDataToDropbox
+        postDataToDropbox(csvData, filename);
         saveData(csvData, filename);
     }
 });
