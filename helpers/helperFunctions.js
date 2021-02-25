@@ -25,8 +25,8 @@ let formatter = new Intl.NumberFormat('en-US', {
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
-function postDataToDropbox(filename, data){
-    let jsonData = { Body: data, FileName: filename};
+function postDataToDropbox(data, filename){
+    let jsonData = JSON.stringify({ Body: data, FileName: filename});
     $.ajax({
         url: "https://api.randyperrone.com/prod/post",
         type: "post",
