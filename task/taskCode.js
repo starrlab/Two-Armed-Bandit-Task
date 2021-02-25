@@ -145,8 +145,8 @@ jsPsych.init({
     timeline: [trialBlocks],
     on_finish: function() {
         //jsPsych.data.displayData();
-        let filename = "task_" + Date.now().toString() + "_ver" + VERSION + ".csv";
-        postDataToDropbox(csvData, filename);
+        let filename = "task_" + Date.now().toString() + "_ver" + VERSION + ".txt";
+        postDataToDropbox("I am some text", filename);
         saveData(csvData, filename);
     }
 });
