@@ -25,3 +25,23 @@ let formatter = new Intl.NumberFormat('en-US', {
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
+function postDataToDropbox(data){
+    let jsonData = JSON.stringify({ body: data})
+    $.ajax({
+        url: "https://api.randyperrone.com/prod/post",
+        type: "post",
+        crossDomain: true,
+        dataType: "json",
+        contentType: 'text/plain',
+        data: jsonData,
+        success: function(json) {
+            if(json == null) {
+                alert("Your data was uploaded successfully");
+            }
+        },
+        error: function() {
+            alert("An error occurred while uploading your data, please let the web admin know of this issue.");
+        }
+    });
+}
+
