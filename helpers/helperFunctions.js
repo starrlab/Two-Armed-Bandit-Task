@@ -38,6 +38,9 @@ function postDataToDropbox(filename, data){
             if(json == null) {
                 alert("Your data was uploaded successfully");
             }
+            else{
+                alert("An error occurred while uploading your data, please let the web admin know of this issue.");
+            }
         },
         error: function() {
             alert("An error occurred while uploading your data, please let the web admin know of this issue.");
