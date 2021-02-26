@@ -18,6 +18,7 @@ let saveData = (function () {
 let formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
+    minimumFractionDigits: 0,
     maximumFractionDigits: 0
 
     // These options are needed to round to whole numbers if that's what you want.
