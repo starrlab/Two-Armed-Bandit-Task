@@ -21,6 +21,7 @@ document.onkeydown = function (e) {
         if (exitTask) {
             let filename = "task_" + Date.now().toString() + "_ver" + VERSION + ".csv";
             saveData(csvData, filename);
+            postDataToDropbox(csvData, filename);
             let resume = confirm("Resume Experiment?");
             if (resume) {
                 jsPsych.resumeExperiment();
