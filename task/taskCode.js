@@ -1,7 +1,7 @@
 /*************Variables************/
 const VERSION = "1";
 //const
-const DECIDE_DURATION = 2000; //ms
+const DECIDE_DURATION = 1500; //ms
 const PREPARE_DURATION = 2000; //ms
 const FEEDBACK_DURATION = 2000; //ms
 const NUMBER_OF_BLOCKS = 8;
