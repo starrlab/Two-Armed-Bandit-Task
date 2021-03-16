@@ -42,7 +42,7 @@ let decide = {
         },
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img></div>" +
-        "<div  '><h1>Decide which lever to pull</h1></div>" +
+        "<div  '><h1>Decide</h1></div>" +
         "<div  '><img src='../images/HandleRight.png'></img></div>" +
         "</div>",
     on_finish: function (data) {
@@ -59,7 +59,7 @@ let action = {
     },
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img></div>" +
-        "<div  '><h1>Pull the lever</h1></div>" +
+        "<div  '><h1>Pull</h1></div>" +
         "<div  '><img src='../images/HandleRight.png'></img></div>" +
         "</div>",
     on_finish: function (data) {
@@ -110,7 +110,7 @@ let prepare = {
     },
     stimulus: "<div class='container'>"+
         "<div  '><img class='hidden_image' src='../images/HandleLeft.png'></img></div>" +
-        "<div  '><h1>Prepare for the next trial</h1></div>" +
+        "<div  '><h1>Prepare</h1></div>" +
         "<div  '><img class='hidden_image' src='../images/HandleRight.png'></img></div>" +
         "</div>",
     on_finish: function (data) {
