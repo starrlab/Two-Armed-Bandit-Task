@@ -136,8 +136,8 @@ let earnings = {
     trial_duration: EARNINGS_DURATION,
     stimulus: function() {
         return "<div>"+
-            "<div  '>Your earnings so far: " + formatter.format(rewardCount).toString() + "</div>" +
-            "<div  '><h1>Computer opponent's earnings so far: " + formatter.format(COMPUTER_REWARDS[currentBlockNumber-1]).toString() + "</h1></div>" +
+            "<div  '><h2>Your earnings so far: " + formatter.format(rewardCount).toString() + "</h2></div>" +
+            "<div  '><h2>Computer opponent's earnings so far: " + formatter.format(COMPUTER_REWARDS[currentBlockNumber-1]).toString() + "</h2></div>" +
             "</div>"
     }
 };
