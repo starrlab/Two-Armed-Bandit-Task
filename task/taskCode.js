@@ -137,7 +137,7 @@ let earnings = {
     stimulus: function() {
         return "<div>"+
             "<div  '><h2>Your earnings so far: " + formatter.format(rewardCount).toString() + "</h2></div>" +
-            "<div  '><h2>Computer opponent's earnings so far: " + formatter.format(COMPUTER_REWARDS[currentBlockNumber-1]).toString() + "</h2></div>" +
+            "<div  '><h2>Computer opponent's earnings so far: " + formatter.format(COMPUTER_REWARDS[currentBlockNumber-2]).toString() + "</h2></div>" +
             "</div>"
     }
 };
