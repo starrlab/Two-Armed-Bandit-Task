@@ -68,10 +68,10 @@ let action = {
         userResponseKeyPress = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press);
         RTtime = data.rt;
         if(userResponseKeyPress == KEYBOARD_PRESS_RIGHT){
-            userRewardForCurrentTrial = RIGHT_ARM_REWARDS[((currentBlockNumber-1)*40+currentTrialNumber)-1];
+            userRewardForCurrentTrial = RIGHT_ARM_REWARDS[((currentBlockNumber-1)*NUMBER_OF_TRIALS+currentTrialNumber)-1];
         }
         else if(userResponseKeyPress == KEYBOARD_PRESS_LEFT){
-            userRewardForCurrentTrial = LEFT_ARM_REWARDS[((currentBlockNumber-1)*40+currentTrialNumber)-1];
+            userRewardForCurrentTrial = LEFT_ARM_REWARDS[((currentBlockNumber-1)*NUMBER_OF_TRIALS+currentTrialNumber)-1];
         }
         else{
             alert("Could not read Keyboard press. Please try again");
