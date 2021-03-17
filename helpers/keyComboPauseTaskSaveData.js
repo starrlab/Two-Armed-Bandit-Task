@@ -1,23 +1,12 @@
 /*************Key Combo for pausing, ending task early and saving data************/
-const KEYCOMBOCHAR1 = 'q';
-const KEYCOMBOCHAR2 = 'w';
-const KEYCOMBOCHAR3 = 'e';
 keys = [];
 document.onkeydown = function (e) {
-    if (e.key === KEYCOMBOCHAR1) {
-        keys.push(e.key);
-    }
-    if (e.key === KEYCOMBOCHAR2) {
-        keys.push(e.key);
-    }
-    if (e.key === KEYCOMBOCHAR3) {
-        keys.push(e.key);
-    }
+    let isEscape = (e.key === "Escape" || e.key === "Esc");
 
-    if (keys.includes(KEYCOMBOCHAR1) && keys.includes(KEYCOMBOCHAR2) && keys.includes(KEYCOMBOCHAR3)) {
+    if (isEscape) {
         jsPsych.pauseExperiment();
         keys.length = 0;
-        let exitTask = confirm("Task Paused...\nClick OK to save data and quit OR Cancel to resume Task.");
+        let exitTask = confirm("Click OK to save data and quit OR Cancel to resume Task.\nTask Paused...");
         if (exitTask) {
             let filename = "task_" + Date.now().toString() + "_ver" + VERSION + ".csv";
             saveData(csvData, filename);
