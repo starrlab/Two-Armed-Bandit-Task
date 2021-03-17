@@ -32,7 +32,7 @@ let decide = {
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img>" +
         "<p class='small'><strong>Press the ← key</strong></p></div>" +
-        "<div  '><h1>Decide which lever to pull</h1></div>" +
+        "<div  '><h1>Decide</h1></div>" +
         "<div  '><img src='../images/HandleRight.png'></img>" +
         "<p class='small'><strong>Press the → key</strong></p></div>" +
         "</div>"
@@ -47,7 +47,7 @@ let action = {
     stimulus: "<div class='container'>"+
         "<div  '><img src='../images/HandleLeft.png'></img>" +
         "<p class='small'><strong>Press the ← key</strong></p></div>" +
-        "<div  '><h1>Pull the lever</h1></div>" +
+        "<div  '><h1>Pull</h1></div>" +
         "<div  '><img src='../images/HandleRight.png'></img>" +
         "<p class='small'><strong>Press the → key</strong></p></div>" +
         "</div>",
@@ -96,7 +96,7 @@ let prepare = {
     stimulus: "<div class='container'>"+
         "<div  '><img  class='hidden_image'  src='../images/HandleLeft.png'></img>" +
         "<p class='hidden_image' class='small'><strong>Press the ← key</strong></p></div>" +
-        "<div  '><h1>Prepare for the next trial</h1></div>" +
+        "<div  '><h1>Prepare</h1></div>" +
         "<div  '><img  class='hidden_image'  src='../images/HandleRight.png'></img>" +
         "<p class='hidden_image' class='small'><strong>Press the → key</strong></p></div>" +
         "</div>",
