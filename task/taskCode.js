@@ -114,6 +114,11 @@ let prepare = {
         "<div  '><h1>Prepare</h1></div>" +
         "<div  '><img class='hidden_image' src='../images/HandleRight.png'></img></div>" +
         "</div>",
+    on_load: function(data){
+        if(currentTrialNumber == NUMBER_OF_TRIALS){
+            jsPsych.finishTrial();
+        }
+    },
     on_finish: function (data) {
         data.trial_type = "prepare";
         data.current_block = currentBlockNumber;
