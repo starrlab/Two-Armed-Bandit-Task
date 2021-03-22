@@ -34,6 +34,14 @@ csvData += "KEYBOARD_PRESS_LEFT," + KEYBOARD_PRESS_LEFT + "\n";
 //title
 csvData += "Linux Time (on finish), Task Index, Total Time Elapsed, Test Type, Block, Trial, Action RT Time, User Response, Reward\n"
 
+let blockNumberPrompt = {
+    type: "html-keyboard-response",
+    choices: jsPsych.ALL_KEYS,
+    stimulus: function() {
+        return "<div><h1>Block #" + currentBlockNumber + " out of 8: Press Any Key to Continue</h1></div>"
+    },
+}
+
 let decide = {
     type: "html-keyboard-response",
     choices: jsPsych.NO_KEYS,
