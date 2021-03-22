@@ -162,7 +162,7 @@ let blockOfTrials = {
 };
 
 let trialBlocks = {
-    timeline: [blockOfTrials, earnings, earnings],
+    timeline: [blockNumberPrompt, blockOfTrials, earnings, earnings],
     randomize_order: false,
     repetitions: NUMBER_OF_BLOCKS
 }
