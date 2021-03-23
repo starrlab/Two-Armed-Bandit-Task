@@ -55,22 +55,37 @@
             </div>
             <br>
             <div>
-                <div>
-                    <label class="h3" for="yes_no_radio">Is your deep brain stimulator currently on?</label>
-                    <p>
-                        <input type="radio" name="yes_no" checked>  Yes</input>
-                    </p>
-                    <p>
-                        <input type="radio" name="yes_no">  No</input>
-                    </p>
-                </div>
+                <form action="#n" name="theForm">
+
+                    <label class="h3" for="gender">Is your deep brain stimulator currently on?</label>
+                    <br>
+                    <input type="radio" name="yes_no" value="stimOn" checked> Yes
+                    <br><br>
+                    <input type="radio" name="yes_no" value="stimOff" > No
+                </form>
             </div>
             <br>
-
+            <h5 id="error"></h5>
         </form>
         <div class="form-group">
             <input class="btn btn-info btn-lg btn-block" type="button"
-                   onclick="location.href='./practice/practice.html';" value="Start Task"/>
+                   onclick="saveDataToLocalAndGoToPractice()" value="Start Task"/>
+            <script>
+                function saveDataToLocalAndGoToPractice() {
+                    let userName = document.getElementById('userName').value;
+                    let medicationDateTime = document.getElementById('dateTimePicker').value;
+                    let stimOnOff = document.querySelector('input[name="yes_no"]:checked').value;
+
+                    if(!userName || !medicationDateTime){
+                        document.getElementById("error").innerHTML = "Please enter your name, medication date/time and choose stim on/off.";
+                    }
+                    else{
+                        let myData = [ userName, medicationDateTime, stimOnOff ];
+                        localStorage.setItem( 'objectToPass', myData );
+                        location.href='./practice/practice.html';
+                    }
+                }
+            </script>
         </div>
     </div>
 </div>

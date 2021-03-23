@@ -30,6 +30,10 @@ csvData += "NUMBER_OF_BLOCKS," + NUMBER_OF_BLOCKS + "\n";
 csvData += "NUMBER_OF_TRIALS," + NUMBER_OF_TRIALS + "\n";
 csvData += "KEYBOARD_PRESS_RIGHT," + KEYBOARD_PRESS_RIGHT + "\n";
 csvData += "KEYBOARD_PRESS_LEFT," + KEYBOARD_PRESS_LEFT + "\n";
+let myData = localStorage['objectToPass'];
+localStorage.removeItem( 'objectToPass' ); // Clear the localStorage
+csvData += "Username, Medication Date/Time, Stim on/off" +"\n";
+csvData += myData;
 
 //title
 csvData += "Linux Time (on finish), Task Index, Total Time Elapsed, Test Type, Block, Trial, Action RT Time, User Response, Reward\n"
