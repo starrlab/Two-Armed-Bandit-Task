@@ -34,6 +34,22 @@ csvData += "KEYBOARD_PRESS_LEFT," + KEYBOARD_PRESS_LEFT + "\n";
 //title
 csvData += "Linux Time (on finish), Task Index, Total Time Elapsed, Test Type, Block, Trial, Action RT Time, User Response, Reward\n"
 
+let instructions = {
+    type: "html-keyboard-response",
+    choices: jsPsych.ALL_KEYS,
+    stimulus: "<div >"+
+        "<div  '><h2>You will complete 8 blocks in total. If you need to exit the game prior to that, press the escape key. Press any key to continue.</h3></div>" +
+        "</div>",
+}
+
+let blockNumberPrompt = {
+    type: "html-keyboard-response",
+    choices: jsPsych.ALL_KEYS,
+    stimulus: function() {
+        return "<div><h1>Block #" + currentBlockNumber + " out of 8: Press Any Key to Continue</h1></div>"
+    },
+}
+
 let decide = {
     type: "html-keyboard-response",
     choices: jsPsych.NO_KEYS,
@@ -110,9 +126,9 @@ let prepare = {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
-        "<div  '><img class='hidden_image' src='../images/HandleLeft.png'></img></div>" +
-        "<div  '><h1>Prepare</h1></div>" +
-        "<div  '><img class='hidden_image' src='../images/HandleRight.png'></img></div>" +
+        "<div  class='hidden_image' '><img class='hidden_image' src='../images/HandleLeft.png'></img></div>" +
+        "<div  '><h1></h1></div>" +
+        "<div  class='hidden_image''><img class='hidden_image' src='../images/HandleRight.png'></img></div>" +
         "</div>",
     on_load: function(data){
         if(currentTrialNumber == NUMBER_OF_TRIALS){
@@ -154,13 +170,13 @@ let blockOfTrials = {
 };
 
 let trialBlocks = {
-    timeline: [blockOfTrials, earnings, earnings],
+    timeline: [blockNumberPrompt, blockOfTrials, earnings, earnings],
     randomize_order: false,
     repetitions: NUMBER_OF_BLOCKS
 }
 
 jsPsych.init({
-    timeline: [trialBlocks],
+    timeline: [instructions, trialBlocks],
     on_finish: function() {
         //jsPsych.data.displayData();
         let filename = "task_" + Date.now().toString() + "_ver" + VERSION + ".csv";
