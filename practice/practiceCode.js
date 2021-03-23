@@ -20,6 +20,9 @@ let instructions = {
     stimulus: "<div >"+
         "<div  '><h2>" + INSTRUCTIONS + "</h2> <h3>Press any key to continue</h3></div>" +
         "</div>",
+    on_finish: function () {
+        window.location.href = "../task/task.html";
+    }
 }
 
 let decide = {
@@ -112,7 +115,7 @@ let practiceComplete = {
         "<div  '><h1>" + PRACTICE_COMPLETE + "</h1><h3>Press any key to go back</h3></div>" +
         "</div>",
     on_finish: function () {
-        window.history.back();
+        window.location.href = "../task/task.html";
     }
 }
 
