@@ -34,6 +34,14 @@ csvData += "KEYBOARD_PRESS_LEFT," + KEYBOARD_PRESS_LEFT + "\n";
 //title
 csvData += "Linux Time (on finish), Task Index, Total Time Elapsed, Test Type, Block, Trial, Action RT Time, User Response, Reward\n"
 
+let instructions = {
+    type: "html-keyboard-response",
+    choices: jsPsych.ALL_KEYS,
+    stimulus: "<div >"+
+        "<div  '><h2>You will complete 8 blocks in total. If you need to exit the game prior to that, press the escape key. Press any key to continue.</h3></div>" +
+        "</div>",
+}
+
 let blockNumberPrompt = {
     type: "html-keyboard-response",
     choices: jsPsych.ALL_KEYS,
@@ -168,7 +176,7 @@ let trialBlocks = {
 }
 
 jsPsych.init({
-    timeline: [trialBlocks],
+    timeline: [instructions, trialBlocks],
     on_finish: function() {
         //jsPsych.data.displayData();
         let filename = "task_" + Date.now().toString() + "_ver" + VERSION + ".csv";

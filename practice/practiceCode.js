@@ -4,33 +4,23 @@ const DECIDE_DURATION = 1500; //ms
 const PREPARE_DURATION = 2000; //ms
 const FEEDBACK_DURATION = 2000; //ms
 const EARNINGS_DURATION = 8000; //ms
+const FEEDBACK_FINAL_DURATION = 5000; //ms
 const KEYBOARD_PRESS_RIGHT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(39); //This is the arrow key code
 const KEYBOARD_PRESS_LEFT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(37); //This is the arrow key code
 const LEFT_ARM_REWARDS = [8.7429,7.6598,8.4829,2.5411,5.2153,5.8229,5.9362,7.2058,8.8563,9.4206,10.348,15.277,14.252,13.6,14.012,17.553,14.649,16.605,14.797,14.75];
 const RIGHT_ARM_REWARDS = [10.261,7.4839,6.7491,10.611,9.5649,7.1491,8.1862,4.9694,11.277,7.962,8.2007,8.7856,10.547,6.0807,4.6681,4.3869,11.49,13.987,13.069,12.829];
-
+const COMPUTER_EARNINGS = 198;
 let rewardCount = 0;
 let userRewardForCurrentTrial = 0;
 let currentTrialNumber = 1;
 let timeline = [];
 
-let instructionsOne = {
+let instructions = {
     type: "html-keyboard-response",
     choices: jsPsych.ALL_KEYS,
     stimulus: "<div >"+
         "<div  '><h2>In this game, your goal is to earn money by pulling levers. Pull one of two levers by pressing the \"left\" or \"right\" arrow key to win money. At any given time, one lever usually provides more money than the other lever. See if you can beat the computer! Good luck! Press any key to continue to the practice round.</h3></div>" +
         "</div>",
-}
-
-let instructionsTwo = {
-    type: "html-keyboard-response",
-    choices: jsPsych.ALL_KEYS,
-    stimulus: "<div >"+
-        "<div  '><h2>You will complete 8 blocks in total. If you need to exit the game prior to that, press the escape key. Press any key to continue.</h3></div>" +
-        "</div>",
-    on_finish: function () {
-        window.location.href = "../task/task.html";
-    }
 }
 
 let decide = {
@@ -119,8 +109,29 @@ let earnings = {
     stimulus: function() {
         return "<div>"+
             "<div  '><h2>Your earnings: " + formatter.format(rewardCount).toString() + "</h2></div>" +
-            "<div  '><h2>Computer opponent's earnings: $198</h2></div>" +
+            "<div  '><h2>Computer opponent's earnings: $" + COMPUTER_EARNINGS + "</h2></div>" +
             "</div>"
+    }
+};
+
+let feedbackFinal = {
+    type: "html-keyboard-response",
+    choices: jsPsych.NO_KEYS,
+    trial_duration: FEEDBACK_FINAL_DURATION,
+    stimulus: function() {
+        if(rewardCount >= COMPUTER_EARNINGS){
+            return "<div>"+
+                "<div  '><h2>Well done, you beat the computer during the practice round! See if you can continue winning during the real game!</h2></div>" +
+                "</div>"
+        }
+        else{
+            return "<div>"+
+                "<div  '><h2>Good effort. Let's see if you can beat the computer during the real game!</h2></div>" +
+                "</div>"
+        }
+    },
+    on_finish: function () {
+        window.location.href = "../task/task.html";
     }
 };
 
@@ -131,7 +142,7 @@ let blockOfTrials = {
 };
 
 let trialBlocks = {
-    timeline: [instructionsOne, blockOfTrials, earnings, earnings, instructionsTwo]
+    timeline: [instructions, blockOfTrials, earnings, earnings, feedbackFinal]
 }
 
 jsPsych.init({
