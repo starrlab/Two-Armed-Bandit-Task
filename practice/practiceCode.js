@@ -41,12 +41,10 @@ let decide = {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
-        "<div  '><img src='../images/HandleLeft.png'></img>" +
-        "<p class='small'><strong>Press the ← key</strong></p></div>" +
+        "<div  '><img src='../images/HandleLeft.png'></img></div>" +
         "<div  '><h1>Decide</h1></div>" +
-        "<div  '><img src='../images/HandleRight.png'></img>" +
-        "<p class='small'><strong>Press the → key</strong></p></div>" +
-        "</div>"
+        "<div  '><img src='../images/HandleRight.png'></img></div>" +
+        "</div>",
 };
 
 let action = {
@@ -56,11 +54,9 @@ let action = {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
-        "<div  '><img src='../images/HandleLeft.png'></img>" +
-        "<p class='small'><strong>Press the ← key</strong></p></div>" +
+        "<div  '><img src='../images/HandleLeft.png'></img></div>" +
         "<div  '><h1>Pull</h1></div>" +
-        "<div  '><img src='../images/HandleRight.png'></img>" +
-        "<p class='small'><strong>Press the → key</strong></p></div>" +
+        "<div  '><img src='../images/HandleRight.png'></img></div>" +
         "</div>",
     on_finish: function (data) {
         userResponseKeyPress = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press);
@@ -85,15 +81,13 @@ let feedback = {
     prompt: function() {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
-    stimulus: function () {
+    stimulus: function() {
         return "<div class='container'>"+
-    "<div  '><img src='../images/HandleLeft.png'></img>" +
-    "<p class='small'><strong>Press the ← key</strong></p></div>" +
-    "<div  '><h1>You won " + formatter.format(userRewardForCurrentTrial).toString() + "</h1></div>" +
-    "<div  '><img src='../images/HandleRight.png'></img>" +
-    "<p class='small'><strong>Press the → key</strong></p></div>" +
-    "</div>"
-    }
+            "<div  '><img src='../images/HandleLeft.png'></img></div>" +
+            "<div  '><h1>You won " + formatter.format(userRewardForCurrentTrial).toString() + "</h1></div>" +
+            "<div  '><img src='../images/HandleRight.png'></img></div>" +
+            "</div>"
+    },
 };
 
 let prepare = {
@@ -104,9 +98,9 @@ let prepare = {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
-        "<div '><img class='hidden_image' src='../images/HandleLeft.png'></img></div>" +
+        "<div  class='hidden_image' '><img class='hidden_image' src='../images/HandleLeft.png'></img></div>" +
         "<div  '><h1></h1></div>" +
-        "<div '><img class='hidden_image' src='../images/HandleRight.png'></img></div>" +
+        "<div  class='hidden_image''><img class='hidden_image' src='../images/HandleRight.png'></img></div>" +
         "</div>",
     on_load: function(data){
         if(currentTrialNumber == NUMBER_OF_TRIALS){
