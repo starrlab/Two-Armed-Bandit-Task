@@ -34,22 +34,6 @@ csvData += "KEYBOARD_PRESS_LEFT," + KEYBOARD_PRESS_LEFT + "\n";
 //title
 csvData += "Linux Time (on finish), Task Index, Total Time Elapsed, Test Type, Block, Trial, Action RT Time, User Response, Reward\n"
 
-let instructionsOne = {
-    type: "html-keyboard-response",
-    choices: jsPsych.ALL_KEYS,
-    stimulus: "<div >"+
-        "<div  '><h2>In this game, your goal is to earn money by pulling levers. Pull one of two levers by pressing the \"left\" or \"right\" arrow key to win money. At any given time, one lever usually provides more money than the other lever. See if you can beat the computer! Good luck! Press any key to continue to the practice round.</h3></div>" +
-        "</div>",
-}
-
-let instructionsTwo = {
-    type: "html-keyboard-response",
-    choices: jsPsych.ALL_KEYS,
-    stimulus: "<div >"+
-        "<div  '><h2>You will complete 8 blocks in total. If you need to exit the game prior to that, press the escape key. Press any key to continue.</h3></div>" +
-        "</div>",
-}
-
 let blockNumberPrompt = {
     type: "html-keyboard-response",
     choices: jsPsych.ALL_KEYS,
@@ -184,7 +168,7 @@ let trialBlocks = {
 }
 
 jsPsych.init({
-    timeline: [instructionsOne, instructionsTwo, trialBlocks],
+    timeline: [trialBlocks],
     on_finish: function() {
         //jsPsych.data.displayData();
         let filename = "task_" + Date.now().toString() + "_ver" + VERSION + ".csv";

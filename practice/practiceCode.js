@@ -1,24 +1,32 @@
 const NUMBER_OF_TRIALS = 20;
-const DECIDE_DURATION = 2000; //ms
+
+const DECIDE_DURATION = 1500; //ms
 const PREPARE_DURATION = 2000; //ms
-const WIN_LOSE_DURATION = 2000; //ms
-const INSTRUCTIONS = "You will have the option to choose 2 levers: left or right.  These levers can be chosen by pressing the left arrow key for the left lever and the right arrow key for the right lever. One lever has a greater reward than the other, so choose carefully. This practice contains 20 trials to let you get the hang of the task.";
-const PRACTICE_COMPLETE = "Practice Complete!";
+const FEEDBACK_DURATION = 2000; //ms
+const EARNINGS_DURATION = 8000; //ms
 const KEYBOARD_PRESS_RIGHT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(39); //This is the arrow key code
 const KEYBOARD_PRESS_LEFT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(37); //This is the arrow key code
-const LEFT_ARM_REWARDS = [83.337,88.632,106.8,91.244,92.127,89.99,91.72,83.373,91.958,86.467,88.274,85.404,84.9,85.658,72.414,86.71,93.669,95.026,87.915,82.854];
-const RIGHT_ARM_REWARDS = [75.101,81.044,66.364,67.243,59.53,65.122,57.024,77.828,61.793,77.591,65.261,70.58,55.51,59.726,69.711,71.007,80.864,85.483,85.61,84.426];
+const LEFT_ARM_REWARDS = [8.7429,7.6598,8.4829,2.5411,5.2153,5.8229,5.9362,7.2058,8.8563,9.4206,10.348,15.277,14.252,13.6,14.012,17.553,14.649,16.605,14.797,14.75];
+const RIGHT_ARM_REWARDS = [10.261,7.4839,6.7491,10.611,9.5649,7.1491,8.1862,4.9694,11.277,7.962,8.2007,8.7856,10.547,6.0807,4.6681,4.3869,11.49,13.987,13.069,12.829];
 
 let rewardCount = 0;
 let userRewardForCurrentTrial = 0;
 let currentTrialNumber = 1;
 let timeline = [];
 
-let instructions = {
+let instructionsOne = {
     type: "html-keyboard-response",
     choices: jsPsych.ALL_KEYS,
     stimulus: "<div >"+
-        "<div  '><h2>" + INSTRUCTIONS + "</h2> <h3>Press any key to continue</h3></div>" +
+        "<div  '><h2>In this game, your goal is to earn money by pulling levers. Pull one of two levers by pressing the \"left\" or \"right\" arrow key to win money. At any given time, one lever usually provides more money than the other lever. See if you can beat the computer! Good luck! Press any key to continue to the practice round.</h3></div>" +
+        "</div>",
+}
+
+let instructionsTwo = {
+    type: "html-keyboard-response",
+    choices: jsPsych.ALL_KEYS,
+    stimulus: "<div >"+
+        "<div  '><h2>You will complete 8 blocks in total. If you need to exit the game prior to that, press the escape key. Press any key to continue.</h3></div>" +
         "</div>",
     on_finish: function () {
         window.location.href = "../task/task.html";
@@ -70,10 +78,10 @@ let action = {
     }
 };
 
-let feedbackWinner = {
+let feedback = {
     type: "html-keyboard-response",
     choices: jsPsych.NO_KEYS,
-    trial_duration: WIN_LOSE_DURATION,
+    trial_duration: FEEDBACK_DURATION,
     prompt: function() {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
@@ -88,7 +96,6 @@ let feedbackWinner = {
     }
 };
 
-
 let prepare = {
     type: "html-keyboard-response",
     choices: jsPsych.NO_KEYS,
@@ -97,36 +104,40 @@ let prepare = {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: "<div class='container'>"+
-        "<div  '><img  class='hidden_image'  src='../images/HandleLeft.png'></img>" +
-        "<p class='hidden_image' class='small'><strong>Press the ← key</strong></p></div>" +
-        "<div  '><h1>Prepare</h1></div>" +
-        "<div  '><img  class='hidden_image'  src='../images/HandleRight.png'></img>" +
-        "<p class='hidden_image' class='small'><strong>Press the → key</strong></p></div>" +
+        "<div '><img class='hidden_image' src='../images/HandleLeft.png'></img></div>" +
+        "<div  '><h1></h1></div>" +
+        "<div '><img class='hidden_image' src='../images/HandleRight.png'></img></div>" +
         "</div>",
+    on_load: function(data){
+        if(currentTrialNumber == NUMBER_OF_TRIALS){
+            jsPsych.finishTrial();
+        }
+    },
     on_finish: function (data) {
         currentTrialNumber++;
     }
 };
 
-let practiceComplete = {
+let earnings = {
     type: "html-keyboard-response",
-    choices: jsPsych.ALL_KEYS,
-    stimulus: "<div>"+
-        "<div  '><h1>" + PRACTICE_COMPLETE + "</h1><h3>Press any key to go back</h3></div>" +
-        "</div>",
-    on_finish: function () {
-        window.location.href = "../task/task.html";
+    choices: jsPsych.NO_KEYS,
+    trial_duration: EARNINGS_DURATION,
+    stimulus: function() {
+        return "<div>"+
+            "<div  '><h2>Your earnings: " + formatter.format(rewardCount).toString() + "</h2></div>" +
+            "<div  '><h2>Computer opponent's earnings: $198</h2></div>" +
+            "</div>"
     }
-}
+};
 
 let blockOfTrials = {
-    timeline: [decide, action, feedbackWinner, prepare],
+    timeline: [decide, action, feedback, prepare],
     randomize_order: false,
     repetitions: NUMBER_OF_TRIALS
 };
 
 let trialBlocks = {
-    timeline: [instructions, blockOfTrials, practiceComplete]
+    timeline: [instructionsOne, blockOfTrials, earnings, earnings, instructionsTwo]
 }
 
 jsPsych.init({
