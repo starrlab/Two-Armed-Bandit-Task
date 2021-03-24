@@ -18,8 +18,8 @@ let instructions = {
     type: "html-keyboard-response",
     choices: jsPsych.ALL_KEYS,
     stimulus: "<div >"+
-        "<img src=\"pic_trulli.jpg\" >" +
         "<div  '><h2>In this game, your goal is to earn money by pulling levers. Pull one of two levers by pressing the \"left\" or \"right\" arrow key to win money. At any given time, one lever usually provides more money than the other lever. See if you can beat the computer! Good luck! Press any key to continue to the practice round.</h3></div>" +
+        "<div> <img src=\"../images/Instructions.PNG\" style=\"width: 50%; height: 50%\"> </div>" +
         "</div>",
 }
 
