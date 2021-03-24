@@ -39,11 +39,11 @@
             </div>
             -->
             <div class="form-group">
-                <h4 class="h3">Please type your name: <input type="text" id="userName"></h4>
+                <h4 class="h3">Please type your Subject ID: <input type="text" id="userName"></h4>
             </div>
             <br>
             <div class="form-group">
-                <h4 class="h3">When is the last time and date you took your medications for movement (ex. Rytary, Duopa, Sinemet)? <input type="text" id="dateTimePicker" class="form-control"></h4>
+                <h4 class="h3">When was the last time/date you took your medication for Parkinson's disease (ex. Rytary, Duopa, Sinemet)? <input type="text" id="dateTimePicker" class="form-control"></h4>
                 <script type="text/javascript">
                     $(function () {
                         $('#dateTimePicker').datetimepicker({
@@ -57,10 +57,10 @@
             <div>
                 <form action="#n" name="theForm">
 
-                    <label class="h3" for="gender">Is your deep brain stimulator currently on?</label>
+                    <label class="h3" for="gender">If you have a Deep Brain Stimulation device implanted, is it currently ON?</label>
                     <br>
-                    <input type="radio" name="yes_no" value="N/A" checked> N/A
-                    <br>
+                    <input type="radio" name="yes_no" value="N/A" checked> Not Applicable
+                    <br><br>
                     <input type="radio" name="yes_no" value="stimOn"> Yes
                     <br><br>
                     <input type="radio" name="yes_no" value="stimOff" > No
@@ -79,7 +79,7 @@
                     let stimOnOff = document.querySelector('input[name="yes_no"]:checked').value;
 
                     if(!userName || !medicationDateTime){
-                        document.getElementById("error").innerHTML = "Please enter your name, medication date/time and choose stim on/off.";
+                        document.getElementById("error").innerHTML = "Please enter your Subject ID and medication date/time";
                     }
                     else{
                         let myData = [ userName, medicationDateTime, stimOnOff ];
