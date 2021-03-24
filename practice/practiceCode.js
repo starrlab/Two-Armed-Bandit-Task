@@ -116,17 +116,16 @@ let earnings = {
 
 let feedbackFinal = {
     type: "html-keyboard-response",
-    choices: jsPsych.NO_KEYS,
-    trial_duration: FEEDBACK_FINAL_DURATION,
+    choices: jsPsych.ALL_KEYS,
     stimulus: function() {
         if(rewardCount >= COMPUTER_EARNINGS){
             return "<div>"+
-                "<div  '><h2>Well done, you beat the computer during the practice round! See if you can continue winning during the real game!</h2></div>" +
+                "<div  '><h2>Well done, you beat the computer during the practice round! See if you can continue winning during the real game! Please press any key to continue</h2></div>" +
                 "</div>"
         }
         else{
             return "<div>"+
-                "<div  '><h2>Good effort. Let's see if you can beat the computer during the real game!</h2></div>" +
+                "<div  '><h2>Good effort. Let's see if you can beat the computer during the real game! Please press any key to continue</h2></div>" +
                 "</div>"
         }
     },
