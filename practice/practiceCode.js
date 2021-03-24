@@ -4,7 +4,6 @@ const DECIDE_DURATION = 1500; //ms
 const PREPARE_DURATION = 2000; //ms
 const FEEDBACK_DURATION = 2000; //ms
 const EARNINGS_DURATION = 8000; //ms
-const FEEDBACK_FINAL_DURATION = 5000; //ms
 const KEYBOARD_PRESS_RIGHT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(39); //This is the arrow key code
 const KEYBOARD_PRESS_LEFT = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(37); //This is the arrow key code
 const LEFT_ARM_REWARDS = [8.7429,7.6598,8.4829,2.5411,5.2153,5.8229,5.9362,7.2058,8.8563,9.4206,10.348,15.277,14.252,13.6,14.012,17.553,14.649,16.605,14.797,14.75];
@@ -20,6 +19,7 @@ let instructions = {
     choices: jsPsych.ALL_KEYS,
     stimulus: "<div >"+
         "<div  '><h2>In this game, your goal is to earn money by pulling levers. Pull one of two levers by pressing the \"left\" or \"right\" arrow key to win money. At any given time, one lever usually provides more money than the other lever. See if you can beat the computer! Good luck! Press any key to continue to the practice round.</h3></div>" +
+        "<div> <img src=\"../images/Instructions.PNG\" style=\"width: 50%; height: 50%\"> </div>" +
         "</div>",
 }
 
@@ -116,17 +116,16 @@ let earnings = {
 
 let feedbackFinal = {
     type: "html-keyboard-response",
-    choices: jsPsych.NO_KEYS,
-    trial_duration: FEEDBACK_FINAL_DURATION,
+    choices: jsPsych.ALL_KEYS,
     stimulus: function() {
         if(rewardCount >= COMPUTER_EARNINGS){
             return "<div>"+
-                "<div  '><h2>Well done, you beat the computer during the practice round! See if you can continue winning during the real game!</h2></div>" +
+                "<div  '><h2>Well done, you beat the computer during the practice round! See if you can continue winning during the real game! Please press any key to continue</h2></div>" +
                 "</div>"
         }
         else{
             return "<div>"+
-                "<div  '><h2>Good effort. Let's see if you can beat the computer during the real game!</h2></div>" +
+                "<div  '><h2>Good effort. Let's see if you can beat the computer during the real game! Please press any key to continue</h2></div>" +
                 "</div>"
         }
     },

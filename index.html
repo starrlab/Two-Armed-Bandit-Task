@@ -4,12 +4,33 @@
     <meta charset="UTF-8">
     <title>Two-Armed Bandit</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./style.css"></link>
+
+
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"></script>
+
+
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+
+        </div>
+
+    </div>
+</div>
+
 
 <div class=" vh-100">
     <div class="d-flex align-items-center flex-column justify-content-center h-100" id="header">
         <h1 class="display-4">Two-Armed Bandit Task</h1>
+        <br>
+        <br>
         <form>
             <!--
             <div class="form-group">
@@ -18,16 +39,57 @@
             </div>
             -->
             <div class="form-group">
-                <input class="btn btn-info btn-lg btn-block" type="button" onclick="location.href='./practice/practice.html';" value="Task" />
+                <h4 class="h3">Please type your Subject ID: <input type="text" id="userName"></h4>
             </div>
+            <br>
+            <div class="form-group">
+                <h4 class="h3">When was the last time/date you took your medication for Parkinson's disease (ex. Rytary, Duopa, Sinemet)? <input type="text" id="dateTimePicker" class="form-control"></h4>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#dateTimePicker').datetimepicker({
+                            step: 15,
+                            format: 'm-d-Y H:i'
+                        });
+                    });
+                </script>
+            </div>
+            <br>
+            <div>
+                <form action="#n" name="theForm">
+
+                    <label class="h3" for="gender">If you have a Deep Brain Stimulation device implanted, is it currently ON?</label>
+                    <br>
+                    <input type="radio" name="yes_no" value="N/A" checked> Not Applicable
+                    <br><br>
+                    <input type="radio" name="yes_no" value="stimOn"> Yes
+                    <br><br>
+                    <input type="radio" name="yes_no" value="stimOff" > No
+                </form>
+            </div>
+            <br>
+            <h5 id="error"></h5>
         </form>
+        <div class="form-group">
+            <input class="btn btn-info btn-lg btn-block" type="button"
+                   onclick="saveDataToLocalAndGoToPractice()" value="Start Task"/>
+            <script>
+                function saveDataToLocalAndGoToPractice() {
+                    let userName = document.getElementById('userName').value;
+                    let medicationDateTime = document.getElementById('dateTimePicker').value;
+                    let stimOnOff = document.querySelector('input[name="yes_no"]:checked').value;
+
+                    if(!userName || !medicationDateTime){
+                        document.getElementById("error").innerHTML = "Please enter your Subject ID and medication date/time";
+                    }
+                    else{
+                        let myData = [ userName, medicationDateTime, stimOnOff ];
+                        localStorage.setItem( 'objectToPass', myData );
+                        location.href='./practice/practice.html';
+                    }
+                }
+            </script>
+        </div>
     </div>
 </div>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -17,3 +17,8 @@
 .hidden_image {
     visibility: hidden;
 }
+
+
+input[type=radio]{
+    transform:scale(1.5);
+}
