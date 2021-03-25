@@ -32,7 +32,7 @@ csvData += "KEYBOARD_PRESS_RIGHT," + KEYBOARD_PRESS_RIGHT + "\n";
 csvData += "KEYBOARD_PRESS_LEFT," + KEYBOARD_PRESS_LEFT + "\n";
 let myData = localStorage['objectToPass'];
 localStorage.removeItem( 'objectToPass' ); // Clear the localStorage
-csvData += "Username, Medication Date/Time, Stim on/off" +"\n";
+csvData += "Subject ID, Medication Date/Time, Stim on/off/N/a" +"\n";
 csvData += myData + "\n";
 
 //title
