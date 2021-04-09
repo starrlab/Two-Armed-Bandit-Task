@@ -110,11 +110,19 @@ let feedback = {
         return "<div><h1>" + formatter.format(rewardCount).toString() + "</h1></div>"
     },
     stimulus: function() {
-        return "<div class='container'>"+
-            "<div  '><img src='../images/HandleLeft.png'></img></div>" +
-            "<div  '><h1>You won " + formatter.format(userRewardForCurrentTrial).toString() + "</h1></div>" +
-            "<div  '><img src='../images/HandleRight.png'></img></div>" +
-            "</div>"
+        if(userResponseKeyPress == KEYBOARD_PRESS_RIGHT){
+            return "<div class='container'>"+
+                "<div  '><img src='../images/HandleLeft.png'></img></div>" +
+                "<div  '><h1>You won " + formatter.format(userRewardForCurrentTrial).toString() + "</h1></div>" +
+                "<div  '><img src='../images/HandleRightPulled.png'></img></div>" +
+                "</div>"
+        }else{
+            return "<div class='container'>"+
+                "<div  '><img src='../images/HandleLeftPulled.png'></img></div>" +
+                "<div  '><h1>You won " + formatter.format(userRewardForCurrentTrial).toString() + "</h1></div>" +
+                "<div  '><img src='../images/HandleRight.png'></img></div>" +
+                "</div>"
+        }
     },
     on_finish: function (data) {
         data.trial_type = "feedback";
