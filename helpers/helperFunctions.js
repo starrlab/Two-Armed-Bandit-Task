@@ -29,7 +29,7 @@ let formatter = new Intl.NumberFormat('en-US', {
 function postDataToDropbox(data, filename){
     let jsonData = JSON.stringify({ Body: data, FileName: filename});
     $.ajax({
-        url: "https://api.randyperrone.com/prod/post",
+        url: "https://c1ekkg03l3.execute-api.us-west-1.amazonaws.com/prod/",
         type: "post",
         crossDomain: true,
         dataType: "json",
